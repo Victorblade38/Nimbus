@@ -60,6 +60,31 @@ function App() {
             </div>
           </div>
         </div>
+        <div className="bg-white  flex flex-col gap-4 p-4 rounded-md">
+          <div className="flex flex-row justify-between items-center text-sm">
+            <p className="text-slate-400 text-sm font-bold">Air Contitions</p>
+            <button className="bg-blue-500 text-white px-2 py-1.5 rounded-md">
+              see more
+            </button>
+          </div>
+          <div className="bg-white  grid grid-cols-3 gap-4 p-4 rounded-md ">
+            <div className="p-2">
+              <p className="mb-2 text-md font-bold text-slate-500">
+                Temperature
+              </p>
+              <span className="font-bold text-2xl text-slate-700">24°</span>
+            </div>
+            <div className="p-2">
+              <p className="mb-2 text-md font-bold text-slate-500">Wind</p>
+              <span className="font-bold text-2xl text-slate-700">24</span>
+              <span className="text-sm font-bold text-slate-500">kmph</span>
+            </div>
+            <div className="p-2">
+              <p className="mb-2 text-md font-bold text-slate-500">Humidity</p>
+              <span className="font-bold text-2xl text-slate-700">0%</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
