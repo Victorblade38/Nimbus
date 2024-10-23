@@ -1,89 +1,75 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import sun from "./assets/sun.png";
 
 function App() {
+  const weatherData = {
+    name: "Mumbai",
+    main: {
+      temp: 302.14,
+      humidity: 74,
+    },
+    wind: {
+      speed: 3.09,
+    },
+    weather: [
+      {
+        description: "clear sky",
+      },
+    ],
+  };
+
+  const convertToCelsius = () => {
+    const temp = weatherData.main.temp;
+    const celsius = (temp - 273.15).toFixed(2);
+    return celsius;
+  };
+
   return (
-    <div className="h-screen flex justify-center items-center bg-gradient-to-r from-blue-500 to-blue-800">
-      <div className="bg-white flex flex-col gap-4 bg-opacity-40 backdrop-filter backdrop-blur-lg border border-white border-opacity-30 shadow-lg rounded-lg p-6">
-        <div className="w-full flex flex-row justify-between gap-2 p-2 font-semibold ">
+    <div className="h-screen flex justify-center items-center bg-gradient-to-r from-blue-500 to-blue-800 ">
+      <div
+        style={{ width: "800px", height: "500px" }}
+        className="bg-white text-slate-800 p-10 grid grid-cols-6 grid-rows-5 gap-4 font-bold font-serif rounded-lg shadow-xl"
+      >
+        <div className="flex items-center bg-red-400  col-span-4 rounded-lg">
           <input
             type="text"
-            placeholder="enter city name"
-            className="w-3/4 py-2 px-4 text-md rounded-md focus:outline-none"
+            placeholder="search city"
+            className="bg-red-400 placeholder:text-white p-4 w-full focus:outline-none"
           />
-          <span className="bg-white py-2 px-4 rounded-md w-1/4 text-center text-slate-600">
-            Tuesday 12:20
-          </span>
         </div>
-        <div className="flex flex-row justify-between col-span-3 p-4">
-          <div className="flex flex-col justify-between text-white">
-            <div>
-              <h1 className="text-3xl font-bold">Mumbai</h1>
-              <p className="font-semibold">Chances of rain 0%</p>
-            </div>
-            <h1 className="text-6xl font-bold mb-2">31°</h1>
-          </div>
-          <img src={sun} width={150} height={150} />
+        <div
+          style={{ width: "230px" }}
+          className="w-56 flex flex-row justify-between items-center  col-span-1 rounded-lg"
+        >
+          <p className="bg-blue-400 p-5 text-xl text-center rounded-lg">
+            Tuesay 09:34
+          </p>
+          <button className="cursor-pointer bg-gray-200 px-4 py-5 text-xl text-center rounded-lg ">
+            !
+          </button>
         </div>
-        <div className="bg-white  flex flex-col gap-4 p-4 rounded-md">
-          <h1 className="text-slate-400 text-sm font-bold">Today's Forecast</h1>
-          <div className="flex flex-row gap-10 justify-between">
-            <div className="flex flex-col gap-2 items-center p-2">
-              <h1 className="text-slate-400 text-sm font-semibold">6:00 AM</h1>
-              <img src={sun} width={40} height={40} />
-              <h1 className="text-2xl font-bold text-slate-600">25°</h1>
-            </div>
-            <div className="flex flex-col gap-2 items-center  p-2">
-              <h1 className="text-slate-400 text-sm font-semibold">6:00 AM</h1>
-              <img src={sun} width={40} height={40} />
-              <h1 className="text-2xl font-bold text-slate-600">25°</h1>
-            </div>
-            <div className="flex flex-col gap-2 items-center  p-2">
-              <h1 className="text-slate-400 text-sm font-semibold">6:00 AM</h1>
-              <img src={sun} width={40} height={40} />
-              <h1 className="text-2xl font-bold text-slate-600">25°</h1>
-            </div>
-            <div className="flex flex-col gap-2 items-center  p-2">
-              <h1 className="text-slate-400 text-sm font-semibold">6:00 AM</h1>
-              <img src={sun} width={40} height={40} />
-              <h1 className="text-2xl font-bold text-slate-600">25°</h1>
-            </div>
-            <div className="flex flex-col gap-2 items-center  p-2">
-              <h1 className="text-slate-400 text-sm font-semibold">6:00 AM</h1>
-              <img src={sun} width={40} height={40} />
-              <h1 className="text-2xl font-bold text-slate-600">25°</h1>
-            </div>
-            <div className="flex flex-col gap-2 items-center  p-2">
-              <h1 className="text-slate-400 text-sm font-semibold">6:00 AM</h1>
-              <img src={sun} width={40} height={40} />
-              <h1 className="text-2xl font-bold text-slate-600">25°</h1>
-            </div>
-          </div>
+        <div className="flex flex-col justify-center  gap-2 p-8 bg-yellow-400  row-span-2 col-span-2 rounded-lg">
+          <h1 className="text-4xl  text-left">Mumbai</h1>
+          <p className="text-xl text-">Clear sky</p>
         </div>
-        <div className="bg-white  flex flex-col gap-4 p-4 rounded-md">
-          <div className="flex flex-row justify-between items-center text-sm">
-            <p className="text-slate-400 text-sm font-bold">Air Contitions</p>
-            <button className="bg-blue-500 text-white px-2 py-1.5 rounded-md">
-              see more
-            </button>
-          </div>
-          <div className="bg-white  grid grid-cols-3 gap-4 p-4 rounded-md ">
-            <div className="p-2">
-              <p className="mb-2 text-md font-bold text-slate-500">
-                Temperature
-              </p>
-              <span className="font-bold text-2xl text-slate-700">24°</span>
-            </div>
-            <div className="p-2">
-              <p className="mb-2 text-md font-bold text-slate-500">Wind</p>
-              <span className="font-bold text-2xl text-slate-700">24</span>
-              <span className="text-sm font-bold text-slate-500">kmph</span>
-            </div>
-            <div className="p-2">
-              <p className="mb-2 text-md font-bold text-slate-500">Humidity</p>
-              <span className="font-bold text-2xl text-slate-700">0%</span>
-            </div>
-          </div>
+        <div className="flex justify-center items-center  bg-green-400 row-span-2 col-span-2 rounded-lg">
+          <p className="text-8xl mb-6">31°</p>
+        </div>
+        <div className="flex flex-col gap-1 justify-center items-start px-8 bg-orange-400  col-span-2 rounded-lg">
+          <p>latitude : 72.8479</p>
+          <p>lonigtude : 72.8479</p>
+        </div>
+
+        <div className="flex flex-col justify-center items-start p-4 bg-gray-100  col-span-2 row-span-3 rounded-lg">
+          <img src={sun} width={200} alt="" />
+        </div>
+        <div className="grid grid-cols-2 gap-2 p-8 bg-purple-400 col-span-4 row-span-2 rounded-lg text-xl">
+          <p>Temperature : 31°</p>
+          <p>Feels like : 32°</p>
+          <p>Humidity : 74</p>
+          <p>Pressure : 300</p>
+
+          <p>Wind Speed : 3.09</p>
         </div>
       </div>
     </div>
