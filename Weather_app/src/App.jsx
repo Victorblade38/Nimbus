@@ -44,7 +44,7 @@ function App() {
     setSearch(""); // Clear the search input
   };
 
-  const [theme, setTheme] = useState("clean");
+  const [theme, setTheme] = useState("color");
 
   const ChangeTheme = () => {
     setTheme((prevTheme) => (prevTheme === "color" ? "clean" : "color"));
@@ -87,15 +87,17 @@ function App() {
               theme === "color"
                 ? "bg-green-400 p-5"
                 : "border-4 border-gray-600 p-4"
-            } text-xl text-center rounded-lg shadow-md shadow-gray-400`}
+            } text-lg text-center rounded-lg shadow-md shadow-gray-400`}
           >
             Tuesay 09:34
           </p>
           <button
             onClick={ChangeTheme}
             className={`cursor-pointer ${
-              theme === "color" ? "border-4 border-gray-600" : "bg-amber-400"
-            } py-2.5 text-xl text-center rounded-lg shadow-md shadow-gray-400`}
+              theme === "color"
+                ? "border-4 border-gray-600 py-2.5"
+                : "bg-amber-400 py-3 px-1.5"
+            }  text-xl text-center rounded-lg shadow-md shadow-gray-400`}
           >
             <img src={brush} width={40} height={10} alt="Change Theme" />
           </button>
