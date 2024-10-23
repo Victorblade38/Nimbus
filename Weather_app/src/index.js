@@ -4,6 +4,7 @@ export const fetchWeatherData = async (cityname) => {
   const response = await fetch(apiUrl);
   const data = await response.json();
   console.log(data);
+
   try {
   } catch (error) {
     console.log("Error while fetching data", error);
