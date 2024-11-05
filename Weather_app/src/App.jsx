@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import weather from "./assets/cloudy.png";
-import brush from "./assets/paint-brush.png";
+import palette from "./assets/palette.png";
 import search_icon from "./assets/search.png";
 import { fetchWeatherData } from "./index";
 
@@ -57,14 +57,14 @@ function App() {
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-gradient-to-r from-blue-500 to-blue-800 overflow-hidden">
       <div
-        className="lg:w-[800px] lg:h-[600px]
-        md:bg-white text-slate-900 p-4 lg:p-10 grid grid-cols-6 lg:grid-rows-5 gap-2 font-bold font-serif rounded-lg lg:shadow-xl lg:shadow-gray-700"
+        className="md:w-[600px] lg:w-[800px] lg:h-[600px]
+        bg-white text-slate-900 p-4 md:p-6 lg:p-10 grid grid-cols-6 lg:grid-rows-6 gap-1 md:gap-2 font-bold font-serif rounded-lg lg:shadow-xl lg:shadow-gray-700"
       >
         <div
           className={`flex flex-row justify-between items-center p-2 lg:p-4 ${
             theme === "color"
               ? "bg-rose-400"
-              : " bg-white border-4 border-gray-700"
+              : " bg-white border-2  lg:border-4  border-gray-700"
           } col-span-5 lg:col-span-4 rounded-lg shadow-md lg:shadow-gray-400`}
         >
           <input
@@ -72,55 +72,54 @@ function App() {
             placeholder="search city"
             className={`${
               theme === "color" ? "bg-rose-400" : ""
-            } placeholder:text-slate-900  px-2 py-2 lg:py-4 focus:outline-none`}
+            } placeholder:text-slate-900 text-[12px] md:text-[14px] lg:text-base  px-2 py-2 md: lg:py-2 focus:outline-none`}
             onChange={(e) => setSearch(e.target.value)}
             value={search} // Bind input value to state
           />
           <button className="p-2" onClick={handleSearch}>
-            <img src={search_icon} width={20} alt="Search" />
+            <img src={search_icon} className="w-4" alt="Search" />
           </button>
         </div>
-        <div
-          style={{ width: "230px" }}
-          className="w-56 flex flex-row justify-between items-center col-span-1 rounded-lg"
-        >
+        <div className="grid grid-cols-3 justify-between items-center gap-1 lg:col-span-2 rounded-lg">
           <p
-            className={`hidden lg:flex  lg:flex lg:flex lg:py-8 ${
+            className={`hidden lg:col-span-2 lg:flex lg:py-2 ${
               theme === "color"
                 ? "bg-green-400 p-5"
-                : "border-4 border-gray-600 p-4"
+                : "border-2 lg:border-4 border-gray-600 p-4"
             } text-lg text-center rounded-lg shadow-md shadow-gray-400`}
           >
-            Tuesay 09:34
+            Tuesday 09:34
           </p>
           <button
             onClick={ChangeTheme}
-            className={`cursor-pointer ${
+            className={`cursor-pointer flex justify-center col-span-3 lg:col-span-1 ${
               theme === "color"
-                ? "bg-white lg:border-4 lg:border-gray-600 py-2.5 "
-                : "bg-amber-400 py-3 lg:px-1.5 "
-            }  lg:py-6 text-xl text-center rounded-lg shadow-md lg:shadow-gray-400`}
+                ? "bg-white border-2 border-gray-500  lg:border-4 lg:border-gray-700 py-3"
+                : "bg-amber-400 py-3 lg:py-5"
+            }  lg:py-4  text-xl text-center rounded-lg shadow-md lg:shadow-gray-700`}
           >
-            <img src={brush} width={40} height={10} alt="Change Theme" />
+            <img src={palette} className="w-6 lg:w-8 " alt="Change Theme" />
           </button>
         </div>
         <div
-          className={`flex flex-col justify-center gap-1 p-8 lg:p-8 ${
+          className={`row-span-1 col-span-4 lg:col-span-4 lg:row-span-2 flex flex-col justify-center gap-1 p-4 lg:p-8 ${
             theme === "color"
               ? "bg-lime-400"
-              : "bg-white border-4 border-gray-700"
-          } row-span-1 col-span-4 lg:col-span-2 lg:row-span-2 rounded-lg shadow-md lg:shadow-gray-400`}
+              : "bg-white border-2 lg:border-4 border-gray-700"
+          }  rounded-lg shadow-md lg:shadow-gray-400`}
         >
-          <h1 className="text-3xl lg:text-4xl text-left">
+          <h1 className="text-xl ml-2 lg:text-4xl text-left">
             {data.name || cityName || "Mumbai"} {/* Display city name */}
           </h1>
-          <p className="text-lg lg:text-2xl">{data.weather[0]?.description}</p>
+          <p className="text-base ml-2 lg:text-2xl">
+            {data.weather[0]?.description}
+          </p>
         </div>
         <div
           className={`flex justify-center items-center ${
             theme === "color"
               ? "bg-cyan-400"
-              : "bg-white border-4 border-gray-700"
+              : "bg-white border-2 lg:border-4 border-gray-700"
           } row-span-1 lg:row-span-2 col-span-2 rounded-lg shadow-md lg:shadow-gray-400`}
         >
           <p className="text-4xl lg:text-7xl lg:mb-6">
@@ -128,29 +127,31 @@ function App() {
           </p>
         </div>
         <div
-          className={`hidden lg:flex  lg:flex lg:flex flex-col gap-1 justify-center items-start px-6 ${
-            theme === "color" ? "bg-fuchsia-400" : "border-4 border-gray-600"
-          } col-span-2 rounded-lg shadow-md shadow-gray-400`}
+          className={`flex flex-col md:flex-row xl:flex-row  gap-1 md:gap-6 justify-center items-center md:py-2 lg:py-0 ${
+            theme === "color"
+              ? "bg-fuchsia-400"
+              : "bg-white border-2 lg:border-4 border-gray-700"
+          } col-span-3 md:col-span-6  lg:col-span-4 text-[11px] md:text-base lg:text-lg  rounded-lg shadow-md`}
         >
           <p>Longitude: {data.coord.lon}</p>
           <p>Latitude: {data.coord.lat}</p>
         </div>
 
         <div
-          className={`flex flex-col justify-center items-start p-4 ${
+          className={`flex flex-col justify-center items-center p-2 ${
             theme === "color"
               ? "bg-gray-100"
-              : "bg-white border-4 border-gray-700"
-          } col-span-2 lg:row-span-3 rounded-lg shadow-md lg:shadow-gray-400`}
+              : "bg-white border-2 lg:border-4 border-gray-700"
+          } col-span-3 md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-3 rounded-lg shadow-md lg:shadow-gray-400`}
         >
-          <img src={weather} width={200} alt="Weather Icon" />
+          <img src={weather} className="w-[60px] md:w-[100px] lg:w-[140px]" />
         </div>
         <div
-          className={`lg:grid lg:grid-cols-2 flex flex-col gap-2 p-6 lg:p-8 ${
+          className={`col-span-6 md:col-span-4 md:row-span-2  flex flex-col gap-2 p-6 lg:p-8 ${
             theme === "color"
               ? "bg-yellow-400"
-              : "bg-white border-4 border-gray-700"
-          } col-span-4 row-span-2 rounded-lg text-sm lg:text-lg shadow-md lg:shadow-gray-400`}
+              : "bg-white border-2 lg:border-4 border-gray-700"
+          } grid grid-cols-2 rounded-lg text-[12px] md:text-sm lg:text-lg shadow-md lg:shadow-gray-400`}
         >
           <p>Temperature: {convertToCelsius(data.main.temp)}°</p>
           <p>Feels Like: {convertToCelsius(data.main.feels_like)}°</p>
