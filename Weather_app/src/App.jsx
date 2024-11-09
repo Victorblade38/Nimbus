@@ -38,7 +38,7 @@ function App() {
       console.log("No input provided");
       return;
     }
-    console.log("Client side", query);
+    //console.log("Client side", query);
     try {
       setLoading(true);
 

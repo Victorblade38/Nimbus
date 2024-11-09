@@ -6,7 +6,7 @@ async function getData(query) {
     const response = await fetch(url);
     const res = await response.json();
     //console.log(typeof res);
-    console.log("Api side", res);
+    //console.log("Api side", res);
     if (res.hasOwnProperty("error")) {
       alert(`Error : ${res["error"]["message"]}`);
       return res;
