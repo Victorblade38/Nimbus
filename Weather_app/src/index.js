@@ -1,13 +1,20 @@
-export const fetchWeatherData = async (cityname) => {
+async function getData(query) {
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&limit=2&appid=${apiKey}`;
-  const response = await fetch(apiUrl);
-  const data = await response.json();
-  console.log(data);
-
+  const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${query}`;
   try {
+    const response = await fetch(url);
+    const res = await response.json();
+    //console.log(typeof res);
+    //console.log("Api side",res);
+    if (res.hasOwnProperty("error")) {
+      alert(`Error : ${res["error"]["message"]}`);
+      return res;
+    }
+    return res;
   } catch (error) {
-    console.log("Error while fetching data", error);
+    console.error(error.message);
+    return null;
   }
-};
-//
+}
+
+export default getData;
