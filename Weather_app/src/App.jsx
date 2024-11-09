@@ -139,7 +139,16 @@ function App() {
               : "N/A"}
           </p>
         </div>
-
+        <div
+          className={`flex flex-col md:flex-row xl:flex-row  gap-1 md:gap-6 justify-center items-center md:py-2 lg:py-0 ${
+            theme === "color"
+              ? "bg-fuchsia-400"
+              : "bg-white border-2 lg:border-4 border-gray-700"
+          } col-span-3 md:col-span-6  lg:col-span-4 text-[11px] md:text-base lg:text-lg  rounded-lg shadow-md`}
+        >
+          <p>Longitude: {data.location.lon}</p>
+          <p>Latitude: {data.location.lat}</p>
+        </div>
         <div
           className={`flex flex-col justify-center items-center p-2 ${
             theme === "color"
