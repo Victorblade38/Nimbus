@@ -32,10 +32,16 @@ function App() {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    const query = e.target.input.value.trim();
 
+    if (!query) {
+      console.log("No input provided");
+      return;
+    }
+    console.log("Client side", query);
     try {
       setLoading(true);
-      const query = e.target.input.value;
+
       const res = await getData(query);
 
       if (res.hasOwnProperty("error")) {
@@ -72,16 +78,13 @@ function App() {
             type="text"
             name="input"
             placeholder="search city"
-            value={searchInput || ""}
+            value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             className={`${
               theme === "color" ? "bg-rose-400" : ""
             } placeholder:text-gray-700 text-[12px] md:text-[14px] lg:text-base  px-2 py-2 md: lg:py-2 focus:outline-none`}
           />
-          <button
-            className="p-2 active:bg-white rounded-md"
-            onClick={() => setSearchInput("")}
-          >
+          <button className="p-2 active:bg-white rounded-md">
             <img src={search_icon} className="w-4" alt="Search" />
           </button>
         </form>
