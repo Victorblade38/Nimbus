@@ -1,12 +1,12 @@
 # Weather App
 
-A simple and responsive weather application built with React, Vite, and Tailwind CSS, using the OpenWeather API to fetch real-time weather data.
+A simple and responsive weather application built with React, Vite, and Tailwind CSS, using the API to fetch real-time weather data.
 
 ## Features
 
 - Search for current weather by city name.
 - Display temperature, humidity, pressure, wind speed, and weather description.
-- Shows the current day and time based on the city’s timezone.
+- Time based on the city’s timezone.
 - Responsive design for various screen sizes.
 
 ## Technologies Used
@@ -15,6 +15,6 @@ A simple and responsive weather application built with React, Vite, and Tailwind
 - **Vite**: A fast development build tool for modern web applications.
 - **JavaScript**: The programming language used for building the app logic.
 - **Tailwind CSS**: A utility-first CSS framework for styling the application.
-- **OpenWeather API**: A weather data service that provides real-time weather information.
+- **API**: A weather data service that provides real-time weather information.
 
 
