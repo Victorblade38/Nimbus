@@ -1,5 +1,5 @@
 async function getData(query) {
-  console.log("Api side", query);
+  //console.log("Api side", query);
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${query}`;
   try {
