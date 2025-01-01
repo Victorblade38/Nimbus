@@ -65,13 +65,13 @@ function App() {
 
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-gradient-to-r from-blue-500 to-blue-800 overflow-hidden">
-      <div className="md:w-[600px] lg:w-[800px] lg:h-[600px] bg-white text-slate-900 p-4 md:p-6 lg:p-10 grid grid-cols-6 lg:grid-rows-6 gap-1 md:gap-2 font-bold font-serif rounded-lg lg:shadow-xl lg:shadow-gray-700">
+      <div className="md:w-[600px] lg:w-[800px] lg:h-[600px] bg-white text-slate-900 p-4 md:p-6 lg:p-8 grid grid-cols-6 lg:grid-rows-6 gap-1 md:gap-2 font-bold font-serif rounded-lg border-[2px] border-gray-400 ">
         <form
           className={`flex flex-row justify-between items-center p-2 lg:p-4 ${
             theme === "color"
               ? "bg-rose-400"
-              : " bg-white border-2 lg:border-4 border-gray-700"
-          } col-span-5 lg:col-span-4 rounded-lg shadow-md lg:shadow-gray-400`}
+              : " bg-white border-2 border-gray-400"
+          } col-span-5 lg:col-span-4 rounded-lg transition-colors ease-in-out duration-500`}
           onSubmit={onSubmitHandler}
         >
           <input
@@ -89,13 +89,13 @@ function App() {
           </button>
         </form>
 
-        <div className="grid grid-cols-3 justify-between items-center gap-1 lg:col-span-2 rounded-lg">
+        <div className="grid grid-cols-3 justify-between items-center gap-1 lg:col-span-2 rounded-lg transition-all ease-in-out duration-500">
           <p
             className={`hidden lg:col-span-2 lg:flex lg:py-2 ${
               theme === "color"
                 ? "bg-green-400 p-5"
-                : "border-2 lg:border-4 border-gray-600 p-4"
-            } text-lg text-center rounded-lg shadow-md shadow-gray-400`}
+                : "border-2 border-gray-400"
+            } text-lg text-center rounded-lg `}
           >
             {data.location?.localtime || "Time Unavailable"}
           </p>
@@ -103,9 +103,9 @@ function App() {
             onClick={ChangeTheme}
             className={`cursor-pointer flex justify-center col-span-3 lg:col-span-1 ${
               theme === "color"
-                ? "bg-white border-2 border-gray-500  lg:border-4 lg:border-gray-700 py-3"
+                ? "bg-white border-2 border-gray-400 py-3"
                 : "bg-amber-400 py-3 lg:py-5"
-            }  lg:py-4  text-xl text-center rounded-lg shadow-md lg:shadow-gray-400`}
+            }  lg:py-4  text-xl text-center rounded-lg transition-colors ease-in-out duration-500`}
           >
             <img src={palette} className="w-6 lg:w-8 " alt="Change Theme" />
           </button>
@@ -115,8 +115,8 @@ function App() {
           className={`row-span-1 col-span-4 lg:col-span-4 lg:row-span-2 flex flex-col justify-center gap-1 p-4 lg:p-8 ${
             theme === "color"
               ? "bg-lime-400"
-              : "bg-white border-2 lg:border-4 border-gray-700"
-          } rounded-lg shadow-md lg:shadow-gray-400`}
+              : "bg-white border-2 border-gray-400"
+          } rounded-lg transition-colors ease-in-out duration-500`}
         >
           <h1 className="text-xl ml-2 lg:text-4xl text-left">
             {data.location?.name || "Unknown Location"}
@@ -130,8 +130,8 @@ function App() {
           className={`flex justify-center items-center ${
             theme === "color"
               ? "bg-cyan-400"
-              : "bg-white border-2 lg:border-4 border-gray-700"
-          } row-span-1 lg:row-span-2 col-span-2 rounded-lg shadow-md lg:shadow-gray-400`}
+              : "bg-white border-2 border-gray-400"
+          } row-span-1 lg:row-span-2 col-span-2 rounded-lg transition-all ease-in-out duration-500`}
         >
           <p className="text-4xl lg:text-7xl lg:mb-6">
             {data.current?.temp_c
@@ -143,8 +143,8 @@ function App() {
           className={`flex flex-col md:flex-row xl:flex-row  gap-1 md:gap-6 justify-center items-center md:py-2 lg:py-0 ${
             theme === "color"
               ? "bg-fuchsia-400"
-              : "bg-white border-2 lg:border-4 border-gray-700"
-          } col-span-3 md:col-span-6  lg:col-span-4 text-[11px] md:text-base lg:text-lg  rounded-lg shadow-md`}
+              : "bg-white border-2 border-gray-400"
+          } col-span-3 md:col-span-6  lg:col-span-4 text-[11px] md:text-base lg:text-lg  rounded-lg transition-all ease-in-out duration-500`}
         >
           <p>Longitude: {data.location.lon}</p>
           <p>Latitude: {data.location.lat}</p>
@@ -153,8 +153,8 @@ function App() {
           className={`flex flex-col justify-center items-center p-2 ${
             theme === "color"
               ? "bg-gray-100"
-              : "bg-white border-2 lg:border-4 border-gray-700"
-          } col-span-3 md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-3 rounded-lg shadow-md lg:shadow-gray-400`}
+              : "bg-white border-2 border-gray-400"
+          } col-span-3 md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-3 rounded-lg transition-all ease-in-out duration-500`}
         >
           {loading ? (
             <Spinner />
@@ -171,8 +171,8 @@ function App() {
           className={`col-span-6 md:col-span-4 md:row-span-2 flex flex-col gap-2 p-6 lg:p-8 ${
             theme === "color"
               ? "bg-yellow-400"
-              : "bg-white border-2 lg:border-4 border-gray-700"
-          } grid grid-cols-2 rounded-lg text-[12px] md:text-sm lg:text-lg shadow-md lg:shadow-gray-400`}
+              : "bg-white border-2 border-gray-400"
+          } grid grid-cols-2 rounded-lg text-[12px] md:text-sm lg:text-lg transition-all ease-in-out duration-500`}
         >
           <p>Temperature: {data.current?.temp_c || "N/A"}°</p>
           <p>Feels Like: {data.current?.feelslike_c || "N/A"}°</p>
