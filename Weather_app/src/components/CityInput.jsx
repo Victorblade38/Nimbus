@@ -17,7 +17,7 @@ function CityInput({ onSubmit }) {
       onChange={(e) => setCity(e.target.value)}
       onKeyDown={handleKeyDown}
       placeholder="Type a city and press Enter"
-      className="p-2 w-40 md:w-60 rounded-md border-[1px] border-gray-200"
+      className="p-2 w-40 text-[16px] md:w-60 rounded-md border-[1px] border-gray-200"
     />
   );
 }
