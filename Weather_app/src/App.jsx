@@ -117,7 +117,7 @@ function App() {
         </nav>
         <header className=" md:mt-10 flex flex-row justify-between items-end">
           <div className=" flex flex-col gap-2 justify-center items-start">
-            <p className="text-secondary text-textSecondary dark:darkTextSecondary">
+            <p className="fontStyle-Secondary text-textSecondary dark:darkTextSecondary">
               {data.location.country}
             </p>
             <h1 className="city text-textPrimary dark:darkTextPrimary">
@@ -128,7 +128,7 @@ function App() {
         </header>
         <section className=" relative overflow-visible h-full flex flex-row justify-between items-center">
           <div className="flex flex-col gap-2">
-            <p className="text-secondary text-textSecondary dark:darkTextSecondary">
+            <p className="fontStyle-Secondary text-textSecondary dark:darkTextSecondary">
               {data.current.condition.text}
             </p>
             <h1 className="numbers-primary text-textPrimary dark:darkTextPrimary">
@@ -149,12 +149,12 @@ function App() {
         <section className=" md:mt-10 mb-10 md:mb-32 flex flex-wrap justify-between items-start">
           {extraInfo.map((info) => (
             <div className="flex flex-col items-start gap-2">
-              <p className="text-secondary text-textSecondary dark:darkTextSecondary">
+              <p className="fontStyle-Secondary text-textSecondary dark:darkTextSecondary">
                 {info.name}
               </p>
               <p className="numbers-secondary text-textPrimary dark:darkTextPrimary">
                 {info.value}
-                <span className="text-secondary text-textSecondary dark:darkTextSecondary">
+                <span className="fontStyle-Secondary text-textSecondary dark:darkTextSecondary">
                   {info.unit}
                 </span>
               </p>
