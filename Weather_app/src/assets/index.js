@@ -7,4 +7,4 @@ export { default as Snow } from "./snow.svg?react";
 export { default as Windy } from "./windy.svg?react";
 export { default as Clouds } from "./clouds.svg?react";
 export { default as CityBg } from "./cities.svg?react";
-export { default as Nimbuslogo } from "./nimbuslogo.svg?react";
+export { default as NimbusIcon } from "./nimbusicon.svg?react";

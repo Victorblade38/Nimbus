@@ -8,7 +8,7 @@ import {
   Snow,
   Windy,
   Clouds,
-  CityBg,
+  NimbusIcon,
 } from "./assets";
 import getData from "./index.js";
 import CityInput from "./components/CityInput.jsx";
@@ -107,12 +107,8 @@ function App() {
     <div className="relative bg-gray-100 dark:bg-darkBg overflow-hidden  max-w-screen min-h-screen p-6 flex justify-center">
       <div className="w-[800px] flex flex-col justify-between gap-10">
         <nav className=" flex flex-row justify-between items-center mt-4 lg:mt-10">
-          <div className="flex flex-row  gap-2">
-            <img
-              src="../public/nimbusicon.svg"
-              alt=""
-              className="w-8 lg:w-10"
-            />
+          <div className="flex flex-row items-center  gap-2">
+            <NimbusIcon className="w-8 h-fit lg:w-10" />
             <h1 className="logoText text-textPrimary dark:darkTextSecondary">
               Nimbus
             </h1>
