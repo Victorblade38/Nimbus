@@ -1,4 +1,4 @@
-# Weather App
+# Nimubs
 
 A simple and responsive weather application built with React, Vite, and Tailwind CSS, using the API to fetch real-time weather data.
 
@@ -16,5 +16,9 @@ A simple and responsive weather application built with React, Vite, and Tailwind
 - **JavaScript**: The programming language used for building the app logic.
 - **Tailwind CSS**: A utility-first CSS framework for styling the application.
 - **API**: A weather data service that provides real-time weather information.
+
+## Images
+![image](https://github.com/user-attachments/assets/e9985799-8dda-4729-9ab9-aeedae78bed8)
+
 
 
