@@ -1,5 +1,5 @@
 # Nimubs 
-### check the clouds before it gets to loud
+### check the clouds before it gets too loud
 
 Nimbus provides real-time weather updates, forecasts, and unique insights about your local weather patterns.
 
