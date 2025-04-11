@@ -116,7 +116,7 @@ function App() {
           <button className="bg-gray-300 p-4 rounded-full"></button>
         </nav>
         <header className=" md:mt-10 flex flex-row justify-between items-end">
-          <div className=" flex flex-col gap-1 justify-center items-start">
+          <div className=" flex flex-col gap-1 lg:gap-2 justify-center items-start">
             <p className="text-secondary text-textSecondary dark:darkTextSecondary">
               {data.location.country}
             </p>
@@ -127,7 +127,7 @@ function App() {
           <CityInput onSubmit={handlecitySubmit} />
         </header>
         <section className=" relative overflow-visible h-full flex flex-row justify-between items-center">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 lg:gap-2">
             <p className="text-secondary text-textSecondary dark:darkTextSecondary">
               {data.current.condition.text}
             </p>
@@ -148,7 +148,7 @@ function App() {
         </section>
         <section className=" md:mt-10 mb-10 md:mb-32 flex flex-wrap justify-between items-start">
           {extraInfo.map((info) => (
-            <div className="flex flex-col items-start gap-1">
+            <div className="flex flex-col items-start gap-1 lg:gap-2">
               <p className="text-secondary text-textSecondary dark:darkTextSecondary">
                 {info.name}
               </p>
