@@ -1,3 +1,82 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.skeleton {
+  border: 1px solid red;
+}
+
+.logoText {
+  text-align: center;
+  font-family: "Istok Web", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+    sans-serif;
+  font-size: 24px;
+
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: normal;
+}
+
+.city {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 64px;
+  font-weight: normal;
+  line-height: 90%;
+}
+
+.text-secondary {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.numbers-primary {
+  text-align: left;
+  font-family: "Agency FB";
+  font-size: 128px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 80%;
+}
+.numbers-secondary {
+  font-family: "Agency FB";
+  font-size: 42px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 80%;
+}
+
+.search {
+  width: min-content;
+  height: fit-content;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  outline: none;
+  background-color: white;
+  border: 0.5px solid #b2b0b0;
+}
+
+@media (max-width: 375px) {
+  .logoText {
+    font-size: 20px;
+  }
+  .numbers-primary {
+    font-size: 64px;
+  }
+  .text-secondary {
+    font-size: 16px;
+  }
+  .city {
+    font-size: 36px;
+  }
+  .numbers-secondary {
+    font-size: 24px;
+  }
+  .search {
+    width: auto;
+    height: auto;
+    padding: 6px;
+  }
+}

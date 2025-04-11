@@ -1,27 +1,36 @@
 import { useEffect, useState } from "react";
-import weather from "./assets/cloudy.png";
-import palette from "./assets/palette.png";
-import search_icon from "./assets/search.png";
+import {
+  Sun,
+  Cloud,
+  Storm,
+  Rainy,
+  DrizzelRain,
+  Snow,
+  Windy,
+  Clouds,
+  CityBg,
+} from "./assets";
 import getData from "./index.js";
-import Spinner from "./components/Spinner/Spinner.jsx";
+import CityInput from "./components/CityInput.jsx";
 
 const defaultData = {
   location: {
-    name: "Search your city",
+    country: "Country",
+    name: "city",
     lat: 1234,
     lon: 1234,
   },
   current: {
     condition: {
-      text: "Sunny",
+      text: "Clear",
       icon: "https://cdn.weatherapi.com/weather/64x64/day/113.png",
     },
     localtime: "2024-11-09 15:30",
-    temp_c: 25,
-    feelslike_c: 26,
-    humidity: 12,
-    pressure_in: 14,
-    wind_kph: 21,
+    temp_c: 11,
+    feelslike_c: 12,
+    humidity: 13,
+    pressure_mb: 14,
+    wind_kph: 15,
   },
 };
 
@@ -30,156 +39,132 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(defaultData);
 
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
-    const query = e.target.input.value.trim();
+  const handlecitySubmit = async (cityName) => {
+    const data = await getData(cityName); // your function to fetch weather
+    setData(data);
+  };
 
-    if (!query) {
-      console.log("No input provided");
-      return;
-    }
-    //console.log("Client side", query);
-    try {
-      setLoading(true);
+  function getWeatherIconComponent(description) {
+    const icons = {
+      sunny: Sun,
+      clear: Sun,
+      clouds: Cloud,
+      cloudy: Clouds,
+      drizzle: DrizzelRain,
+      rain: Rainy,
+      thunderstorm: Storm,
+      storm: Storm,
+      snow: Snow,
+      mist: Clouds,
+      fog: Clouds,
+      haze: Windy,
+      windy: Windy,
+      dust: Windy,
+      tornado: Windy,
+      thunder: Storm,
+      "heavy rain": Rainy,
+    };
 
-      const res = await getData(query);
+    const lowerDesc = description.toLowerCase();
 
-      if (res.hasOwnProperty("error")) {
-        console.log("Error in fetching data");
-      } else {
-        setData(res);
+    for (let key in icons) {
+      if (lowerDesc.includes(key)) {
+        return icons[key];
       }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-      setSearchInput("");
     }
-  };
 
-  const [theme, setTheme] = useState("color");
+    return Sun; // default
+  }
 
-  const ChangeTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "color" ? "clean" : "color"));
-  };
+  const weatherCondition = data.current.condition.text || "clear";
+  const WeatherIcon = getWeatherIconComponent(weatherCondition);
+
+  const extraInfo = [
+    {
+      name: "Feels Like",
+      value: data.current.feelslike_c,
+      unit: "°C",
+    },
+    {
+      name: "Humidity",
+      value: data.current.humidity,
+      unit: "%",
+    },
+    {
+      name: "Wind Speed",
+      value: data.current.wind_kph,
+      unit: "km/h",
+    },
+
+    {
+      name: "Pressure",
+      value: data.current.pressure_mb,
+      unit: "mb",
+    },
+  ];
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-gradient-to-r from-blue-500 to-blue-800 overflow-hidden">
-      <div className="md:w-[600px] lg:w-[800px] lg:h-[600px] bg-white text-slate-900 p-4 md:p-6 lg:p-8 grid grid-cols-6 lg:grid-rows-6 gap-1 md:gap-2 font-bold font-serif rounded-lg border-[2px] border-gray-400 ">
-        <form
-          className={`flex flex-row justify-between items-center p-2 lg:p-4 ${
-            theme === "color"
-              ? "bg-rose-400"
-              : " bg-white border-2 border-gray-400"
-          } col-span-5 lg:col-span-4 rounded-lg transition-colors ease-in-out duration-500`}
-          onSubmit={onSubmitHandler}
-        >
-          <input
-            type="text"
-            name="input"
-            placeholder="search city"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            className={`${
-              theme === "color" ? "bg-rose-400" : ""
-            } placeholder:text-gray-700 text-[12px] md:text-[14px] lg:text-base  px-2 py-2 md: lg:py-2 focus:outline-none`}
-          />
-          <button className="p-2 active:bg-white rounded-md">
-            <img src={search_icon} className="w-4" alt="Search" />
-          </button>
-        </form>
-
-        <div className="grid grid-cols-3 justify-between items-center gap-1 lg:col-span-2 rounded-lg transition-all ease-in-out duration-500">
-          <p
-            className={`hidden lg:col-span-2 lg:flex lg:py-2 ${
-              theme === "color"
-                ? "bg-green-400 p-5"
-                : "border-2 border-gray-400"
-            } text-lg text-center rounded-lg `}
-          >
-            {data.location?.localtime || "Time Unavailable"}
-          </p>
-          <button
-            onClick={ChangeTheme}
-            className={`cursor-pointer flex justify-center col-span-3 lg:col-span-1 ${
-              theme === "color"
-                ? "bg-white border-2 border-gray-400 py-3"
-                : "bg-amber-400 py-3 lg:py-5"
-            }  lg:py-4  text-xl text-center rounded-lg transition-colors ease-in-out duration-500`}
-          >
-            <img src={palette} className="w-6 lg:w-8 " alt="Change Theme" />
-          </button>
-        </div>
-
-        <div
-          className={`row-span-1 col-span-4 lg:col-span-4 lg:row-span-2 flex flex-col justify-center gap-1 p-4 lg:p-8 ${
-            theme === "color"
-              ? "bg-lime-400"
-              : "bg-white border-2 border-gray-400"
-          } rounded-lg transition-colors ease-in-out duration-500`}
-        >
-          <h1 className="text-xl ml-2 lg:text-4xl text-left">
-            {data.location?.name || "Unknown Location"}
-          </h1>
-          <p className="text-base ml-2 lg:text-2xl">
-            {data.current?.condition?.text || "Condition Unavailable"}
-          </p>
-        </div>
-
-        <div
-          className={`flex justify-center items-center ${
-            theme === "color"
-              ? "bg-cyan-400"
-              : "bg-white border-2 border-gray-400"
-          } row-span-1 lg:row-span-2 col-span-2 rounded-lg transition-all ease-in-out duration-500`}
-        >
-          <p className="text-4xl lg:text-7xl lg:mb-6">
-            {data.current?.temp_c
-              ? `${Math.floor(data.current.temp_c)}°`
-              : "N/A"}
-          </p>
-        </div>
-        <div
-          className={`flex flex-col md:flex-row xl:flex-row  gap-1 md:gap-6 justify-center items-center md:py-2 lg:py-0 ${
-            theme === "color"
-              ? "bg-fuchsia-400"
-              : "bg-white border-2 border-gray-400"
-          } col-span-3 md:col-span-6  lg:col-span-4 text-[11px] md:text-base lg:text-lg  rounded-lg transition-all ease-in-out duration-500`}
-        >
-          <p>Longitude: {data.location.lon}</p>
-          <p>Latitude: {data.location.lat}</p>
-        </div>
-        <div
-          className={`flex flex-col justify-center items-center p-2 ${
-            theme === "color"
-              ? "bg-gray-100"
-              : "bg-white border-2 border-gray-400"
-          } col-span-3 md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-3 rounded-lg transition-all ease-in-out duration-500`}
-        >
-          {loading ? (
-            <Spinner />
-          ) : (
+    <div className="relative bg-gray-100 dark:bg-darkBg overflow-hidden  max-w-screen min-h-screen p-6 flex justify-center">
+      <div className="w-[800px] flex flex-col justify-between gap-10">
+        <nav className=" flex flex-row justify-between items-center mt-4 lg:mt-10">
+          <div className="flex flex-row  gap-2">
             <img
-              src={data.current?.condition?.icon || weather}
-              className="w-[60px] md:w-[100px] lg:w-[140px] contrast-50"
-              alt="Weather Icon"
+              src="../public/nimbusicon.svg"
+              alt=""
+              className="w-8 lg:w-10"
             />
-          )}
-        </div>
+            <h1 className="logoText text-textPrimary dark:darkTextSecondary">
+              Nimbus
+            </h1>
+          </div>
+          <button className="bg-gray-300 p-4 rounded-full"></button>
+        </nav>
+        <header className=" md:mt-10 flex flex-row justify-between items-end">
+          <div className=" flex flex-col gap-1 justify-center items-start">
+            <p className="text-secondary text-textSecondary dark:darkTextSecondary">
+              {data.location.country}
+            </p>
+            <h1 className="city text-textPrimary dark:darkTextPrimary">
+              {data.location.name || "Not found"}
+            </h1>
+          </div>
+          <CityInput onSubmit={handlecitySubmit} />
+        </header>
+        <section className=" relative overflow-visible h-full flex flex-row justify-between items-center">
+          <div className="flex flex-col gap-1">
+            <p className="text-secondary text-textSecondary dark:darkTextSecondary">
+              {data.current.condition.text}
+            </p>
+            <h1 className="numbers-primary text-textPrimary dark:darkTextPrimary">
+              {data.current.temp_c}°
+              <span className="numbers-secondary text-textSecondary dark:darkTextSecondary">
+                C
+              </span>
+            </h1>
+          </div>
 
-        <div
-          className={`col-span-6 md:col-span-4 md:row-span-2 flex flex-col gap-2 p-6 lg:p-8 ${
-            theme === "color"
-              ? "bg-yellow-400"
-              : "bg-white border-2 border-gray-400"
-          } grid grid-cols-2 rounded-lg text-[12px] md:text-sm lg:text-lg transition-all ease-in-out duration-500`}
-        >
-          <p>Temperature: {data.current?.temp_c || "N/A"}°</p>
-          <p>Feels Like: {data.current?.feelslike_c || "N/A"}°</p>
-          <p>Humidity: {data.current?.humidity || "N/A"}</p>
-          <p>Pressure: {data.current?.pressure_in || "N/A"}</p>
-          <p>Wind Speed: {data.current?.wind_kph || "N/A"}</p>
-        </div>
+          <div
+            className="-right-[220px] md:-right-[180px]  absolute
+           "
+          >
+            <WeatherIcon className=" w-[400px] md:w-max" />
+          </div>
+        </section>
+        <section className=" md:mt-10 mb-10 md:mb-32 flex flex-wrap justify-between items-start">
+          {extraInfo.map((info) => (
+            <div className="flex flex-col items-start gap-1">
+              <p className="text-secondary text-textSecondary dark:darkTextSecondary">
+                {info.name}
+              </p>
+              <p className="numbers-secondary text-textPrimary dark:darkTextPrimary">
+                {info.value}
+                <span className="text-secondary text-textSecondary dark:darkTextSecondary">
+                  {info.unit}
+                </span>
+              </p>
+            </div>
+          ))}
+        </section>
       </div>
     </div>
   );
