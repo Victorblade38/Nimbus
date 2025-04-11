@@ -1,6 +1,7 @@
 # Nimubs
+##Check the clouds
 
-A simple and responsive weather application built with React, Vite, and Tailwind CSS, using the API to fetch real-time weather data.
+Nimbus provides real-time weather updates, forecasts, and unique insights about your local weather patterns.
 
 ## Features
 
