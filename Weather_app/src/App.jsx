@@ -103,24 +103,33 @@ function App() {
     },
   ];
 
+  const date = new Date();
+
+  const options = { month: "long", day: "2-digit", year: "numeric" };
+  const formattedDate = date.toLocaleDateString("en-IN", options);
+
+  const day = date.toLocaleDateString("en-US", { weekday: "long" });
+
   return (
     <div className="relative bg-gray-100 dark:bg-darkBg overflow-hidden  max-w-screen min-h-screen p-6 flex justify-center">
       <div className="w-[800px] flex flex-col justify-between gap-10">
         <nav className=" flex flex-row justify-between items-center mt-4 lg:mt-10">
           <div className="flex flex-row items-center  gap-2">
             <NimbusIcon className="w-8 h-fit lg:w-10" />
-            <h1 className="logoText text-textPrimary dark:darkTextSecondary">
-              Nimbus
-            </h1>
+            <h1 className="logoText text-textPrimary ">Nimbus</h1>
           </div>
-          <button className="bg-gray-300 p-4 rounded-full"></button>
+          <div>
+            <h4 className="fontStyle-Secondary text-textPrimary ">
+              {formattedDate}
+            </h4>
+          </div>
         </nav>
         <header className=" md:mt-10 flex flex-row justify-between items-end">
           <div className=" flex flex-col gap-2 justify-center items-start">
-            <p className="fontStyle-Secondary text-textSecondary dark:darkTextSecondary">
+            <p className="fontStyle-Secondary text-textSecondary ">
               {data.location.country}
             </p>
-            <h1 className="city text-textPrimary dark:darkTextPrimary">
+            <h1 className="city text-textPrimary ">
               {data.location.name || "Not found"}
             </h1>
           </div>
@@ -128,14 +137,12 @@ function App() {
         </header>
         <section className=" relative overflow-visible h-full flex flex-row justify-between items-center">
           <div className="flex flex-col gap-2">
-            <p className="fontStyle-Secondary text-textSecondary dark:darkTextSecondary">
+            <p className="fontStyle-Secondary text-textSecondary ">
               {data.current.condition.text}
             </p>
-            <h1 className="numbers-primary text-textPrimary dark:darkTextPrimary">
+            <h1 className="numbers-primary text-textPrimary ">
               {data.current.temp_c}°
-              <span className="numbers-secondary text-textSecondary dark:darkTextSecondary">
-                C
-              </span>
+              <span className="numbers-secondary text-textSecondary ">C</span>
             </h1>
           </div>
 
@@ -149,12 +156,12 @@ function App() {
         <section className=" md:mt-10 mb-10 md:mb-32 flex flex-wrap justify-between items-start">
           {extraInfo.map((info) => (
             <div className="flex flex-col items-start gap-2">
-              <p className="fontStyle-Secondary text-textSecondary dark:darkTextSecondary">
+              <p className="fontStyle-Secondary text-textSecondary ">
                 {info.name}
               </p>
-              <p className="numbers-secondary text-textPrimary dark:darkTextPrimary">
+              <p className="numbers-secondary text-textPrimary ">
                 {info.value}
-                <span className="fontStyle-Secondary text-textSecondary dark:darkTextSecondary">
+                <span className="fontStyle-Secondary text-textSecondary ">
                   {info.unit}
                 </span>
               </p>
